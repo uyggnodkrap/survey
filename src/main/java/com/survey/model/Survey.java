@@ -2,6 +2,6 @@ package com.survey.model;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Survey {
 }
