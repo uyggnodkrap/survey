@@ -3,7 +3,7 @@ package com.survey.model;
 import javax.persistence.Entity;
 import java.time.LocalDate;
 
-@Entity
+//@Entity
 public class Survey {
 
 
