@@ -5,14 +5,16 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class User {
 
+public class User {
     @Id
     private  Long userId;
     private String userName;
     private  String password;
     private  String phoneNumber;
+
     private LocalDate birth;
+
     private  String email;
     private  String bankName;
     private  String bankAccount ;
@@ -25,8 +27,9 @@ public class User {
         this.birth = birth;
         this.email = email;
         this.bankName = bankName;
-        this.bankAccount = bankAccount;
     }
+
+
 
     public User() {}
 
