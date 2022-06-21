@@ -1,5 +1,6 @@
 package com.survey.controller;
 
+import com.survey.dto.ResponseDTO;
 import com.survey.dto.UserDTO;
 import com.survey.model.User;
 import com.survey.service.UserService;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping
+@RequestMapping("api/user")
 @Slf4j
 public class UserController {
 
@@ -41,6 +42,7 @@ public class UserController {
         List<UserDTO> dtos = user.stream().map(UserDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
+
 
 
 }

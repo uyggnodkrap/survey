@@ -1,17 +1,14 @@
 package com.survey.dto;
 
 import com.survey.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
-@Builder
+
+
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class UserDTO {
 
     private Long userId;
@@ -22,6 +19,7 @@ public class UserDTO {
     private String email;
     private String bankName;
     private String bankAccount;
+    @Builder
 
     public UserDTO (User user){
         this.userId = user.getUserId();
@@ -32,5 +30,10 @@ public class UserDTO {
         this.email = user.getEmail();
         this.bankName = user.getBankName();
         this.bankAccount = user.getBankAccount();
+    }
+
+    public UserDTO(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 }
