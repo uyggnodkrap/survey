@@ -15,4 +15,10 @@ public class UserControllerImp implements UserService{
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    public User findByUserNameAndPassword(String name, String password) {
+        System.out.println(name);
+        return userRepository.findByUserNameAndPassword(name, password);
+    }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("select t from User t")
-    List<User> findAll();
+
+
+    User findByUserNameAndPassword(String name, String password);
 }

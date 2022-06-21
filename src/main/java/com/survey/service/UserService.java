@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface UserService {
     public List<User> findAll();
+
+    User findByUserNameAndPassword(String name, String password);
 }
