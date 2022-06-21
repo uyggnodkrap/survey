@@ -1,8 +1,6 @@
 package com.survey.model;
 
-import javax.persistence.Id;
-
-public class question {
+public class Question {
     private Long id;
     private int questingId;
     private String questionContent;
