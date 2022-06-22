@@ -1,6 +1,8 @@
 package com.survey.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
@@ -8,6 +10,7 @@ import java.time.LocalDate;
 
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long userId;
     private String userName;
     private  String password;
@@ -17,7 +20,7 @@ public class User {
 
     private  String email;
     private  String bankName;
-    private  String bankAccount ;
+    private  String bankAccount;
 
     public User(Long userId, String userName, String password, String phoneNumber, LocalDate birth, String email, String bankName, String bankAccount) {
         this.userId = userId;
