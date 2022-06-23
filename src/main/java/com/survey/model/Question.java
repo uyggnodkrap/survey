@@ -19,20 +19,14 @@ public class Question {
     @Column(name = "question_id")
     private Long questionId;
 
-//    @Column(name = "survey_id")
-//    private int surveyId;
-
     @Column(name = "question_content")
     private String questionContent;
 
 
-    //관계 설정
     @JsonManagedReference
     @OneToMany(mappedBy = "question")
     private List<QuestionValue> questionValue = new ArrayList<>();
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
-//    private List<QuestionValue> questionValue = new ArrayList<>();
 
     @JsonBackReference
     @ManyToOne(targetEntity = Survey.class)

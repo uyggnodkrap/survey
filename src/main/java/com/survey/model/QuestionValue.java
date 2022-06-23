@@ -19,11 +19,6 @@ public class QuestionValue {
 
     private int value;
 
-    //관계 설정
-//    @ManyToOne
-//    @JoinColumn(name = "Question_Id")
-//    private Question question;
-
     @JsonBackReference
     @ManyToOne(targetEntity = Question.class)
     @JoinColumn(name = "question_id")

@@ -38,13 +38,9 @@ public class Survey {
     @Column(name = "publish_end")
     private LocalDate publishEnd;
 
-    //관계 설정
+
     @JsonManagedReference
     @OneToMany(mappedBy = "survey")
     private List<Question> question = new ArrayList<>();
-
-//    @ManyToOne(targetEntity = User.class)
-//    @JoinColumn(name = "user_id")
-//    private User user;
 
 }
