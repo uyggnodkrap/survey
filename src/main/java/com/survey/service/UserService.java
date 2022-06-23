@@ -1,6 +1,7 @@
 package com.survey.service;
 
 import com.survey.dto.UserDTO;
+import com.survey.dto.UserResponseDTO;
 import com.survey.model.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,15 +13,19 @@ import java.util.List;
 public interface UserService {
     public List<User> findAll();
 
+    User findById(Long surveyId);
+
+//    User  update(UserDTO userDTO);
     // 회원 가입
-    public UserDTO save(User newUser);
+    public UserResponseDTO save(User newUser);
 
     // 회원 정보 수정
-    public UserDTO update(User user);
+    public UserResponseDTO update(User user);
 
     //public UserDTO loginService(User userLogin);
 
-    UserDTO loginService(User userLogin, HttpServletRequest request, HttpServletResponse response);
+    UserResponseDTO loginService(User userLogin, HttpServletRequest request, HttpServletResponse response);
 
     String logoutService(HttpSession session);
+
 }
