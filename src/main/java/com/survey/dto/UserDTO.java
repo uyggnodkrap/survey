@@ -20,7 +20,6 @@ public class UserDTO {
     private String bankName;
     private String bankAccount;
     @Builder
-
     public UserDTO (User user){
         this.userId = user.getUserId();
         this.userName = user.getUserName();
@@ -35,5 +34,19 @@ public class UserDTO {
     public UserDTO(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+
+
+    public User toEntity(){
+        return User.builder()
+                .userName(userName)
+                .password(password)
+                .phoneNumber(phoneNumber)
+                .birth(birth)
+                .email(email)
+                .bankAccount(bankAccount)
+                .bankName(bankName)
+                .build();
+
     }
 }

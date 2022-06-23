@@ -2,19 +2,19 @@ package com.survey.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@ToString
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String userName;
     private String password;
@@ -22,6 +22,14 @@ public class User {
     private LocalDate birth;
     private String email;
     private String bankName;
-    private String bankAccount ;
+    private String bankAccount;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Survey> surveyList;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "surveyList=" + surveyList +
+                '}';
+    }
 }

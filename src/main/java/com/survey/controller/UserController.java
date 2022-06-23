@@ -43,6 +43,15 @@ public class UserController {
         return ResponseEntity.ok(dtos);
     }
 
+    @PostMapping("/add")
+    public User save(@RequestBody UserDTO userDTO){
+        return userService.save(userDTO);
+    }
+
+//    @PatchMapping("/update")
+//    public User  update(@RequestBody UserDTO userDTO){
+//        return userService.update(userDTO);
+//    }
 
 
 }

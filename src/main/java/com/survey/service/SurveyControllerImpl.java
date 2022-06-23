@@ -1,14 +1,19 @@
 package com.survey.service;
 
+import com.survey.dto.ResponseDTO;
 import com.survey.dto.SurveyDTO;
+import com.survey.dto.UserDTO;
 import com.survey.model.Survey;
+import com.survey.model.User;
 import com.survey.repository.SurveyRepository;
+import com.survey.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -16,6 +21,8 @@ public class SurveyControllerImpl implements SurveyService{
 
     @Autowired
     SurveyRepository surveyRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Transactional
     public boolean isSurveyExist(String name){ // 설문조사 이름이 존재하면 true 반환
@@ -23,13 +30,8 @@ public class SurveyControllerImpl implements SurveyService{
     }
 
     @Override
-    public Survey save(SurveyDTO surveyDTO) {
-        final String surveyName = surveyDTO.getSurveyName();
-        if (isSurveyExist(surveyName)) {
-            return null;
-        }
-        System.out.println(surveyDTO);
-        return surveyRepository.save(surveyDTO.toEntity());
+    public Survey save(Survey survey) {
+        return surveyRepository.save(survey);
     }
 
     @Override
@@ -38,17 +40,58 @@ public class SurveyControllerImpl implements SurveyService{
     }
 
     @Override
-    public List<Survey> update(SurveyDTO surveyDTO) {
-        final Optional<Survey> foundSurvey = surveyRepository.findById(surveyDTO.getSurveyId());
-        foundSurvey.ifPresent(newSurvey -> {
-            newSurvey.setSurveyName(surveyDTO.getSurveyName());
-            newSurvey.setPublishEnd(surveyDTO.getPublishEnd());
-            newSurvey.setPublishStart(surveyDTO.getPublishStart());
-            newSurvey.setRequired(surveyDTO.getRequired());
-            newSurvey.setPublishState(surveyDTO.getPublishState());
-            surveyRepository.save(newSurvey);
+    public Survey update(SurveyDTO surveyDTO) {
+        try{
+            Survey survey = surveyRepository.findById(surveyDTO.getSurveyId()).get();
+            survey.setSurveyName(surveyDTO.getSurveyName());
+            survey.setRequired(surveyDTO.getRequired());
+            survey.setPublishEnd(surveyDTO.getPublishEnd());
+            survey.setPublishState(surveyDTO.getPublishState());
+            survey.setPublishStart(surveyDTO.getPublishStart());
+            return surveyRepository.save(survey);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
 
-        });
+    }
+
+    @Override
+    public ResponseEntity<?> findAllByUser(Long id) {
+        try{
+            User user = userRepository.findById(id).get();
+            List<Survey> surveyList = surveyRepository.findByUser(user);
+            List<SurveyDTO> surveyDTOList = new ArrayList<>();
+
+            for (Survey survey: surveyList) {
+                SurveyDTO surveyDTO = SurveyDTO.builder()
+                        .surveyId(survey.getSurveyId())
+                        .publishEnd(survey.getPublishEnd())
+                        .publishStart(survey.getPublishStart())
+                        .surveyName(survey.getSurveyName())
+                        .publishState(survey.getPublishState())
+                        .required(survey.getRequired())
+                        .build();
+
+                surveyDTOList.add(surveyDTO);
+            }
+            return ResponseEntity.ok(surveyDTOList);
+        }catch (Exception e){
+            ResponseDTO responseDTO = ResponseDTO.builder().error(e.getMessage()).build();
+            return ResponseEntity.badRequest().body(responseDTO);
+        }
+    }
+
+    @Override
+    public List<Survey> deleteSurvey(SurveyDTO surveyDTO) {
+        try{
+            Survey survey = surveyRepository.findById(surveyDTO.getSurveyId()).get();
+            surveyRepository.delete(survey);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return surveyRepository.findAll();
+        }
         return surveyRepository.findAll();
     }
 }
