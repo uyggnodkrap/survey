@@ -29,6 +29,6 @@ public class SurveyDTO {
         this.publishState = survey.getPublishState();
         this.publishStart = survey.getPublishStart();
         this.publishEnd = survey.getPublishEnd();
-        this.userId = survey.getSurveyId();
+
     }
 }
