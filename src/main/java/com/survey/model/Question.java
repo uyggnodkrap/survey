@@ -6,18 +6,22 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Table(name = "question")
 public class Question {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
     private Long questionId;
+
 
     @Column(name = "question_content")
     private String questionContent;
@@ -32,4 +36,5 @@ public class Question {
     @ManyToOne(targetEntity = Survey.class)
         @JoinColumn(name = "survey_id")
         private Survey survey;
+
 }

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/result")
+@RequestMapping("result")
 @CrossOrigin("*")
 public class ResultController {
     @Autowired
     private ResultService surveyService;
 
-    @GetMapping()
+    @GetMapping("/resultPage")
     public List<Survey> findAll() {
         return surveyService.findAll();
     }

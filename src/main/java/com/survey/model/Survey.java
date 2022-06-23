@@ -1,27 +1,26 @@
 package com.survey.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 public class Survey {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "survey_id")
     private Long surveyId;
-
-    @Column(name = "user_id")
-    private int userId;
 
     @Column(name = "survey_name", nullable = false)
     private String surveyName;
@@ -39,8 +38,21 @@ public class Survey {
     private LocalDate publishEnd;
 
 
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "survey")
     private List<Question> question = new ArrayList<>();
+
+
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "user=" + user +
+                '}';
+    }
 
 }

@@ -1,17 +1,20 @@
 package com.survey.model;
 
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+import javax.persistence.*;
+import java.io.Serializable;
+
 @Entity
-public class QuestionValue {
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Table(name = "question_value")
+public class QuestionValue implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "questionValue_id")
@@ -23,4 +26,5 @@ public class QuestionValue {
     @ManyToOne(targetEntity = Question.class)
     @JoinColumn(name = "question_id")
     private Question question;
+
 }

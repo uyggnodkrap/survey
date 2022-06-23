@@ -1,5 +1,6 @@
 package com.survey.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,37 +8,35 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private  Long userId;
-
-    @Column(name = "user_name", nullable = false)
+    private Long userId;
     private String userName;
-
-    @Column(nullable = false)
-    private  String password;
-
-    @Column(name = "phone_number", nullable = false)
-    private  String phoneNumber;
-
-    @Column(nullable = false)
+    private String password;
+    private String phoneNumber;
     private LocalDate birth;
+    private String email;
+    private String bankName;
+    private String bankAccount;
 
-    @Column(name = "e_mail", nullable = false)
-    private  String email;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user")
+    private List<Survey> surveyList = new ArrayList<>();
 
-    @Column(name = "bank_name")
-    private  String bankName;
-
-    @Column(name = "bank_account")
-    private  String bankAccount;
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "surveyList=" + surveyList +
+                '}';
+    }
 }
+
