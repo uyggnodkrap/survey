@@ -37,7 +37,7 @@ public class SurveyController {
     @PostMapping("/add") // 설문조사 추가
     public ResponseEntity<?> save(@RequestBody SurveyDTO surveyDTO){ // 설문조사 추가
         try{
-            User user = userService.findById(surveyDTO.getSurveyId());
+            User user = userService.findById(surveyDTO.getUserId());
 
             Survey survey = Survey.builder()
                     .surveyName(surveyDTO.getSurveyName())

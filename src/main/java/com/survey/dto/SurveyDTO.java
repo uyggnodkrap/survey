@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Builder
 public class SurveyDTO {
     private Long surveyId;
+    private Long userId;
 
     private String surveyName;
     private String publishState;
@@ -28,5 +29,6 @@ public class SurveyDTO {
         this.publishState = survey.getPublishState();
         this.publishStart = survey.getPublishStart();
         this.publishEnd = survey.getPublishEnd();
+        this.userId = survey.getSurveyId();
     }
 }
