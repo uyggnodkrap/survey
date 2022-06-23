@@ -5,36 +5,33 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+import java.util.List;
+
 @Entity
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Table(name = "user")
+@NoArgsConstructor
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private int userId;
-
-    @Column(name = "user_name")
+    private Long userId;
     private String userName;
-
     private String password;
-
-    @Column(name = "phone_number")
     private String phoneNumber;
-
     private LocalDate birth;
-
-    @Column(name = "e_mail")
     private String email;
-
-    @Column(name = "bank_name")
     private String bankName;
-
-    @Column(name = "bank_account")
     private String bankAccount;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Survey> surveyList;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "surveyList=" + surveyList +
+                '}';
+    }
 }
+

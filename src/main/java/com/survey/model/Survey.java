@@ -7,35 +7,28 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@Builder
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Table(name = "survey")
-public class Survey extends BaseTimeEntity{
+@NoArgsConstructor
+@Builder
+public class Survey {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "survey_id")
-    private int surveyId;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long surveyId;
+    private String surveyName;
+    private String publishState;
+    private int required;
+    private LocalDate publishStart;
+    private LocalDate publishEnd;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class) // student와 major의 관계는 다대일 (N:1)
     @JoinColumn(name = "user_id")
     private User user;
-//    private int userId;
 
-    @Column(name = "survey_name")
-    private String surveyName;
-
-    @Column(name = "publish_state")
-    private int publishState;
-
-    private int required;
-
-
-//    @Column(name = "publish_start")
-//    private LocalDate publishStart;
-//
-//    @Column(name = "publish_end")
-//    private LocalDate publishEnd;
-
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "user=" + user +
+                '}';
+    }
 }
