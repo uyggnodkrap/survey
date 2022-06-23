@@ -21,6 +21,8 @@ public class User {
     private String password;
     private String phoneNumber;
     private LocalDate birth;
+
+    @Column(name = "e_mail")
     private String email;
     private String bankName;
     private String bankAccount;
