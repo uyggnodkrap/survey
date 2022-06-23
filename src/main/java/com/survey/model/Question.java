@@ -1,25 +1,29 @@
 package com.survey.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Table(name = "question")
+
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int questingId;
+    @Column(name = "question_id")
+    private int questionId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
+
+    @Column(name = "question_content")
     private String questionContent;
+
 }

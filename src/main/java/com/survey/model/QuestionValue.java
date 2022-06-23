@@ -1,16 +1,30 @@
 package com.survey.model;
 
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class QuestionValue {
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Table(name = "question_value")
+public class QuestionValue implements Serializable {
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "question_value_id")
+//    private int questionvalueId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long questionId;
+    private int questionvalueId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "question_id")
+    private Question question;
+
     private int value;
+
 }

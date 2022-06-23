@@ -17,4 +17,5 @@ public interface SurveyService {
     ResponseEntity<?> findAllByUser(Long id);
 
     List<Survey> deleteSurvey(SurveyDTO surveyDTO);
+
 }

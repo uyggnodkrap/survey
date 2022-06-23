@@ -11,6 +11,8 @@ import java.util.List;
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
     Boolean existsBySurveyName(String surveyName);
 
-
     List<Survey> findByUser(User toEntity);
+    
+    Survey findBysurveyIdAndUser_userId(Long surveyId, Long userId);
+
 }
