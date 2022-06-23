@@ -1,57 +1,66 @@
 package com.survey.controller;
 
-import com.survey.dto.ResponseDTO;
+
 import com.survey.dto.UserDTO;
+import com.survey.dto.UserResponseDTO;
 import com.survey.model.User;
 import com.survey.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/user")
 @Slf4j
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    UserResponseDTO dto;
+
 
     @GetMapping
     public ResponseEntity<?> findAll() {
-//
-//        try{
-//            throw new Exception();
-//        }
-//
-//         catch (Exception e) {
-//             log.trace("가장 디테일한 로그");
-//             log.warn("경고");
-//             log.info("정보성 로그");
-//             log.debug("디버깅용 로그");
-//             log.error("에러" + e.getMessage());
-//
-//        }
-//
-//
-
         List<User> user = userService.findAll();
         List<UserDTO> dtos = user.stream().map(UserDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
 
-    @PostMapping("/add")
-    public User save(@RequestBody UserDTO userDTO){
-        return userService.save(userDTO);
+    //회원 가입
+    @PostMapping()
+    public UserResponseDTO joinUsUser(@RequestBody User newUser) {
+        log.debug("Controller : joinUsUser()");
+        return userService.save(newUser);
     }
 
-//    @PatchMapping("/update")
-//    public User  update(@RequestBody UserDTO userDTO){
-//        return userService.update(userDTO);
-//    }
+    //회원 정보 수정
+    @PutMapping()
+    public UserResponseDTO updateUser(@RequestBody User user) {
+        log.debug("Controller : 회원 정보 수정 메서드 동작");
+        return userService.update(user);
+    }
 
+    @PostMapping("/login")
+    public UserResponseDTO loginService(@RequestBody User userLogin, HttpServletRequest request, HttpServletResponse response){
+        log.debug("Controller : LoginUser()");
+        return userService.loginService(userLogin, request, response);
+    }
+
+    @GetMapping("/logout")
+    public String logoutService(HttpSession session){
+        log.debug("Controller : logout()");
+        return userService.logoutService(session);
+    }
 
 }

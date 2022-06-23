@@ -1,5 +1,6 @@
 package com.survey.model;
 
+
 import lombok.*;
 
 import javax.persistence.*;
