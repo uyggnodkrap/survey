@@ -1,29 +1,40 @@
 package com.survey.model;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name = "question")
-
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
-    private int questionId;
+    private Long questionId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "survey_id")
-    private Survey survey;
 
     @Column(name = "question_content")
     private String questionContent;
+
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "question")
+    private List<QuestionValue> questionValue = new ArrayList<>();
+
+
+    @JsonBackReference
+    @ManyToOne(targetEntity = Survey.class)
+        @JoinColumn(name = "survey_id")
+        private Survey survey;
 
 }

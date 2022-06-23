@@ -14,6 +14,8 @@ import java.time.LocalDate;
 public class SurveyDTO {
     private Long surveyId;
 
+    private Long userId;
+
     private String surveyName;
     private String publishState;
     private int required;

@@ -1,6 +1,8 @@
 package com.survey.model;
 
+
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,18 +15,16 @@ import java.io.Serializable;
 @Table(name = "question_value")
 public class QuestionValue implements Serializable {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "question_value_id")
-//    private int questionvalueId;
-
     @Id
-    private int questionvalueId;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "question_id")
-    private Question question;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "questionValue_id")
+    private Long questionValueId;
 
     private int value;
+
+    @JsonBackReference
+    @ManyToOne(targetEntity = Question.class)
+    @JoinColumn(name = "question_id")
+    private Question question;
 
 }

@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 public class UserDTO {
-
     private Long userId;
     private String userName;
     private String password;
@@ -19,6 +18,7 @@ public class UserDTO {
     private String email;
     private String bankName;
     private String bankAccount;
+
     @Builder
     public UserDTO (User user){
         this.userId = user.getUserId();
@@ -36,7 +36,6 @@ public class UserDTO {
         this.password = password;
     }
 
-
     public User toEntity(){
         return User.builder()
                 .userName(userName)
@@ -49,4 +48,5 @@ public class UserDTO {
                 .build();
 
     }
-    }
+
+}

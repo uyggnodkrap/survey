@@ -1,6 +1,7 @@
 package com.survey.service;
 
 import com.survey.dto.UserDTO;
+import com.survey.dto.UserResponseDTO;
 import com.survey.model.User;
 import com.survey.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,10 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -28,9 +26,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
     @Autowired
-    UserDTO dto;
-
-
+    UserResponseDTO dto;
 
 
 
@@ -40,9 +36,17 @@ public class UserServiceImpl implements UserService{
         return userRepository.findAll();
     }
 
+    @Override
+    public User findById(Long surveyId) {
+        Optional<User> user = userRepository.findById(surveyId);
+        if (user.isPresent()) return user.get();
+        return null;
+
+    }
+
     // 회원 가입
     @Override
-    public UserDTO save(User newUser) {
+    public UserResponseDTO save(User newUser) {
         List<User> findUser = userRepository.findByUserName(newUser.getUserName());
         if(findUser.isEmpty()) {
             userRepository.save(newUser);
@@ -57,7 +61,7 @@ public class UserServiceImpl implements UserService{
 
     // 회원 정보 수정
     @Override
-    public UserDTO update(User user) {
+    public UserResponseDTO update(User user) {
 
         //해당 User의 닉네임으로 DB 접근 > 해당 유저의 정보만 가져옴 (닉네임 중복 불가 유니크 속성)
         List<User> findUser = userRepository.findByUserName(user.getUserName());
@@ -93,7 +97,7 @@ public class UserServiceImpl implements UserService{
 
     // login
     @Override
-    public UserDTO loginService(User userLogin, HttpServletRequest request, HttpServletResponse response) {
+    public UserResponseDTO loginService(User userLogin, HttpServletRequest request, HttpServletResponse response) {
         List<User> getUser = userRepository.findByUserName(userLogin.getUserName());
         String id=userLogin.getUserName();
         String pwd=userLogin.getPassword();

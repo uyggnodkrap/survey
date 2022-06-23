@@ -29,7 +29,6 @@ public class UserController {
     @Autowired
     UserResponseDTO dto;
 
-
     @GetMapping
     public ResponseEntity<?> findAll() {
         List<User> user = userService.findAll();
