@@ -1,4 +1,4 @@
-package com.survey.dto;
+package com.survey.dto.survey.question;
 
 import lombok.*;
 

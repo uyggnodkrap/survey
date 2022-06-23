@@ -1,10 +1,12 @@
 package com.survey.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,8 +28,9 @@ public class User {
     private String email;
     private String bankName;
     private String bankAccount;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private List<Survey> surveyList;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user")
+    private List<Survey> surveyList = new ArrayList<>();
 
     @Override
     public String toString() {

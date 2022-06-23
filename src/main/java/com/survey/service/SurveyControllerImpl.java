@@ -1,9 +1,8 @@
 package com.survey.service;
 
 import com.survey.dto.ResponseDTO;
-import com.survey.dto.SurveyCreateByUserRequestDto;
+import com.survey.dto.survey.SurveyCreateByUserRequestDto;
 import com.survey.dto.SurveyDTO;
-import com.survey.dto.UserDTO;
 import com.survey.model.Survey;
 import com.survey.model.User;
 import com.survey.repository.SurveyRepository;

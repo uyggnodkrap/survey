@@ -1,5 +1,6 @@
-package com.survey.dto;
+package com.survey.dto.survey.question;
 
+import com.survey.dto.survey.question.QuestionCreateRequestDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;

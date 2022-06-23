@@ -1,6 +1,10 @@
 package com.survey.controller;
 
 import com.survey.dto.*;
+import com.survey.dto.survey.SurveyCreateByUserRequestDto;
+import com.survey.dto.survey.SurveyCreateByUserResponseDto;
+import com.survey.dto.survey.question.QuestionCreateRequestDto;
+import com.survey.dto.survey.question.QuestionCreateResponseDto;
 import com.survey.model.Question;
 import com.survey.model.Survey;
 import com.survey.model.User;
