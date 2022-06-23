@@ -1,19 +1,20 @@
 package com.survey.service;
 
 import com.survey.model.Survey;
-import com.survey.model.User;
-import com.survey.repository.SurveyRepository;
+import com.survey.repository.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class SurveyServiceImpl implements SurveyService {
+public class ResultServiceImpl implements ResultService {
     @Autowired
-    private SurveyRepository repository;
+    private ResultRepository repository;
 
     public List<Survey> findAll() {
         return repository.findAll();
+
+
     }
 }
