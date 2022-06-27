@@ -67,7 +67,7 @@
 
 # 07. ERD 
 
-(수정할 부분) 이 자리에 ERD캡쳐본 올라가면 좋을 것 같아요!!!!
+![image](https://user-images.githubusercontent.com/103519499/175857003-e443f410-8600-432b-a0c2-c6e9a6c0a79c.png)
 
 - USER
 
@@ -112,7 +112,6 @@
 # 09. 트러블 슈팅
 ![image](https://user-images.githubusercontent.com/81737413/175856775-8979f833-c5d7-480d-87e4-a039613b68d7.png)
 
-(수정 사항!!! 오류 이미지는 github에서 추가 하겠습니다.)
 -테이블을 여러 Entity를 만들고 양방향 맵핑을 하고 결과를 확인하는 과정에서 똑같은 데이터가 반복적으로 출력되어 서버가 죽는 현상이 발생했습니다. 이를 해결하기 위해서 부모 클래스에 @JsonManagedReference, 자식 클래스에는 @JsonBackReference를 코드를 작성해줌으로써 문제점을 해결할 수 있었습니다.
 
 # 10. 느낀점 
