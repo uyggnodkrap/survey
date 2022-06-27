@@ -20,8 +20,8 @@
 이러한 서비스를 통해 의뢰인은 원하는 만큼의 설문 응답을 받을 때까지의 수고와 시간을 줄여서 효과적인 사업 계획을 기획하는 데 이바지할 수 있습니다.
 
 # 03. 기술 스택
-<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> 2.7.0
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 8.0.29
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> 2.7.0<hr>
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 8.0.29<hr>
 <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> 
 
 # Tool
