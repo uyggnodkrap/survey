@@ -1,14 +1,14 @@
 # 01. 팀원  소개 및 역할
 
-박동규: 마이페이지 관리 기능
+<strong>박동규</strong>: 마이페이지 관리 기능
 
-배서현: 로그인, 회원가입 기능
+<strong>배서현</strong>: 로그인, 회원가입 기능
 
-황지원: 설문조사 생성 기능
+<strong>황지원</strong>: 설문조사 생성 기능
 
-이수민: 배포 전 요구사항 설정 기능
+<strong>이수민</strong>: 배포 전 요구사항 설정 기능
 
-원종혁: 결과 페이지 조회 기능
+<strong>원종혁</strong>: 결과 페이지 조회 기능
 
 # 02. 프로젝트 소개 
 데이터 수집의 중요성이 커진 요즘 시대이니만큼 크고 작은 사업에 있어서 타겟이 되는 고객들이 원하는 요구를 파악하는 것이 중요해졌습니다.
@@ -20,8 +20,8 @@
 이러한 서비스를 통해 의뢰인은 원하는 만큼의 설문 응답을 받을 때까지의 수고와 시간을 줄여서 효과적인 사업 계획을 기획하는 데 이바지할 수 있습니다.
 
 # 03. 기술 스택
-<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> 2.7.0<br>
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 8.0.29<br>
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> <strong>2.7.0</strong></<br>
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <strong>8.0.29</strong><br>
 <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> 
 
 ## <Tool>
@@ -110,6 +110,7 @@
  [OPEN API](https://documenter.getpostman.com/view/21185840/UzBsHjS8)
 
 # 09. 트러블 슈팅
+![image](https://user-images.githubusercontent.com/81737413/175856775-8979f833-c5d7-480d-87e4-a039613b68d7.png)
 
 (수정 사항!!! 오류 이미지는 github에서 추가 하겠습니다.)
 -테이블을 여러 Entity를 만들고 양방향 맵핑을 하고 결과를 확인하는 과정에서 똑같은 데이터가 반복적으로 출력되어 서버가 죽는 현상이 발생했습니다. 이를 해결하기 위해서 부모 클래스에 @JsonManagedReference, 자식 클래스에는 @JsonBackReference를 코드를 작성해줌으로써 문제점을 해결할 수 있었습니다.
