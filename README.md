@@ -2,7 +2,7 @@
 
 <strong>박동규</strong>: 마이페이지 관리 기능
 
-<strong>배서현</strong>: 로그인, 회원가입 기능
+<strong>배서현</strong>: 로그인, 회원가입, 세션유지 기능
 
 <strong>황지원</strong>: 설문조사 생성 기능
 
@@ -67,7 +67,7 @@
 
 # 07. ERD 
 
-(수정할 부분) 이 자리에 ERD캡쳐본 올라가면 좋을 것 같아요!!!!
+![image](https://user-images.githubusercontent.com/103519499/175857221-720fb0c6-77dc-4907-8aed-3968736d7380.png)
 
 - USER
 
